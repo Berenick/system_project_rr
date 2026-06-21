@@ -1,0 +1,12 @@
+- name: Настройка сервера
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Начало задания [1] Создание пользователя и группы
+      ansible.builtin.debug:
+        msg: "Create users"
+
+    - name: Создание пользователя, группы, файла .ssh
+      ansible.builtin.include_role:
+        name: user_setup

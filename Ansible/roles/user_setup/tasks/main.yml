@@ -1,0 +1,30 @@
+- name: Убедимся, что группа существует - {{ group_name }}
+  ansible.builtin.group:
+    gid: "{{ group_id_name }}"
+    name: "{{ group_name }}"
+    state: "present"
+
+- name: Create User {{ username }}
+  ansible.builtin.user:
+    name: "{{ username }}"
+    create_home: "{{ home_dir_create_flag }}"
+    group: "{{ group_name }}"
+    shell: /bin/bash
+    uid: "{{ uid }}"
+    state: present
+  register: user_command_output
+
+- name: Debug message home directory
+  ansible.builtin.debug:
+    msg: "{{ user_command_output.home }} - является домашней директорией пользователя username"
+
+
+- name: Создание директории с правами .ssh
+  ansible.builtin.file:
+    path: "{{ user_command_output.home }}/.ssh"
+    state: directory
+    recurse: true
+    mode: u=rwx,g=,o=
+    owner: "{{ username }}"
+    group: "{{  group_name }}"
+# - name: Размещение ssh-ключа

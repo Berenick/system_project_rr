@@ -1,7 +1,8 @@
-username: "deployer"
-group_name: "administrators"#  Имя группы.
-group_id_name: 100 #  GID группы.
-shell: "/bin/bash"#  Shell пользователя.
+username: "sysadmin_01"
+uid: 1189
+group_name: "administrators" #  Имя группы.
+group_id_name: 1172 #  GID группы.
+shell: "/bin/bash" #  Shell пользователя.
 home_dir_create_flag: true #  Флаг создания домашнего каталога.
 public_key_dir: #  Путь к публичному SSH-ключу (или сам ключ как переменная).
 keys_delete_if_exist: true #  Флаг идемпотентности для ключей (заменять все или добавлять). -->
